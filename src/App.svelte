@@ -7,6 +7,7 @@
   import PlaceholderAdd from "./lib/PlaceholderAdd.svelte";
   import DateList from "./lib/DateList.svelte";
   import Logo from "./lib/Logo.svelte";
+  import Credits from "./lib/Credits.svelte";
 
   let showAddForm = false;
 
@@ -23,22 +24,27 @@
   }
 </script>
 
-<div class="container pb-3">
-  <Row class="justify-content-center">
-    <Col md={8}>
-      <Logo />
-      <CardFilter />
-      <Row>
-        <Col>
-          <DateList />
-          {#if !showAddForm}
-            <PlaceholderAdd on:add={() => showForm(true)} />
-          {/if}
-        </Col>
-      </Row>
-      {#if showAddForm}
-        <AddDate on:addDate={addDate} on:hideForm={() => showForm(false)}/>
-      {/if}
-    </Col>
-  </Row>
-</div>
+<main class="flex-shrink-0">
+  <div class="container pb-3">
+    <Row class="justify-content-center">
+      <Col md={8}>
+        <Logo />
+        <CardFilter />
+        <Row>
+          <Col>
+            <DateList />
+            {#if !showAddForm}
+              <PlaceholderAdd on:add={() => showForm(true)} />
+            {/if}
+          </Col>
+        </Row>
+        {#if showAddForm}
+          <AddDate on:addDate={addDate} on:hideForm={() => showForm(false)}/>
+        {/if}
+      </Col>
+    </Row>
+  </div>
+</main>
+<footer class="mt-auto text-center bg-white py-3">
+  <Credits />
+</footer>
