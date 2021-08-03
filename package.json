@@ -1,0 +1,32 @@
+{
+  "name": "deis",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.11",
+    "eslint": "^7.32.0",
+    "eslint-plugin-svelte3": "^3.2.0",
+    "sass": "^1.37.0",
+    "svelte": "^3.37.0",
+    "vite": "^2.4.4"
+  },
+  "dependencies": {
+    "@fontsource/abeezee": "^4.5.0",
+    "bootstrap": "^5.0.2",
+    "date-range-compressor": "^2.0.0",
+    "dayjs": "^1.10.6",
+    "diff-dates": "^1.0.14",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "moment-precise-range": "^0.2.0",
+    "object-encrypter": "^0.1.3",
+    "svelte-persistent-store": "^0.1.6",
+    "sveltestrap": "^5.5.1",
+    "uuid": "^8.3.2"
+  }
+}
