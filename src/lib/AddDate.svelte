@@ -1,5 +1,5 @@
 <script>
-  import {createEventDispatcher} from 'svelte';
+  import { createEventDispatcher } from 'svelte';
   import {
     Icon,
     Card,
@@ -12,7 +12,7 @@
     Button,
     Label,
     Row,
-    Col
+    Col,
   } from 'sveltestrap';
 
   let title = '';
@@ -29,7 +29,7 @@
     e.preventDefault();
 
     if (title === '' || date === '') {
-        return;
+      return;
     }
 
     dispatcher('addDate', {
@@ -41,55 +41,59 @@
   }
 
   function sendCancel() {
-    dispatcher('hideForm')
+    dispatcher('hideForm');
   }
 
   $: addEnabled = title !== '' && date !== '';
 </script>
 
 <Row>
-    <Col>
-        <Card>
-            <CardBody>
-                <CardTitle>New date</CardTitle>
-                <Form on:submit={handleSubmit}>
-                    <Row>
-                        <Col lg={8}>
-                            <FormGroup>
-                                <Label>Title:</Label>
-                                <Input type="text" bind:value={title} placeholder="Eg.: My birthday"/>
-                            </FormGroup>
-                        </Col>
-                        <Col lg={4}>
-                            <FormGroup>
-                                <Label>Date:</Label>
-                                <Input type="date" bind:value={date}/>
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                </Form>
-            </CardBody>
-            <CardFooter>
-                <Row>
-                    <Col>
-                        <Button
-                                color="primary"
-                                type="button"
-                                class="w-100"
-                                disabled={!addEnabled}
-                                on:click={handleSubmit}
-                        >
-                            <Icon name="plus"/>
-                            Add date
-                        </Button>
-                    </Col>
-                </Row>
-                <Row class="pt-2">
-                    <Col class="text-center">
-                        <a href="#" on:click|preventDefault={sendCancel}>Cancel</a>
-                    </Col>
-                </Row>
-            </CardFooter>
-        </Card>
-    </Col>
+  <Col>
+    <Card>
+      <CardBody>
+        <CardTitle>New date</CardTitle>
+        <Form on:submit={handleSubmit}>
+          <Row>
+            <Col lg={8}>
+              <FormGroup>
+                <Label>Title:</Label>
+                <Input
+                  type="text"
+                  bind:value={title}
+                  placeholder="Eg.: My birthday"
+                />
+              </FormGroup>
+            </Col>
+            <Col lg={4}>
+              <FormGroup>
+                <Label>Date:</Label>
+                <Input type="date" bind:value={date} />
+              </FormGroup>
+            </Col>
+          </Row>
+        </Form>
+      </CardBody>
+      <CardFooter>
+        <Row>
+          <Col>
+            <Button
+              color="primary"
+              type="button"
+              class="w-100"
+              disabled={!addEnabled}
+              on:click={handleSubmit}
+            >
+              <Icon name="plus" />
+              Add date
+            </Button>
+          </Col>
+        </Row>
+        <Row class="pt-2">
+          <Col class="text-center">
+            <Button color="link" on:click={sendCancel}>Cancel</Button>
+          </Col>
+        </Row>
+      </CardFooter>
+    </Card>
+  </Col>
 </Row>

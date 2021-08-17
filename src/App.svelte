@@ -1,13 +1,13 @@
 <script>
-  import CardFilter from "./lib/CardFilter.svelte";
+  import CardFilter from './lib/CardFilter.svelte';
   import AddDate from './lib/AddDate.svelte';
-  import {days} from './stores/main';
-  import DateItem from "./helpers/DateItem";
-  import {Row, Col} from 'sveltestrap';
-  import PlaceholderAdd from "./lib/PlaceholderAdd.svelte";
-  import DateList from "./lib/DateList.svelte";
-  import Logo from "./lib/Logo.svelte";
-  import Credits from "./lib/Credits.svelte";
+  import { days } from './stores/main';
+  import DateItem from './helpers/DateItem';
+  import { Row, Col } from 'sveltestrap';
+  import PlaceholderAdd from './lib/PlaceholderAdd.svelte';
+  import DateList from './lib/DateList.svelte';
+  import Logo from './lib/Logo.svelte';
+  import Credits from './lib/Credits.svelte';
 
   let showAddForm = false;
 
@@ -16,7 +16,7 @@
   }
 
   function addDate(e) {
-    const {title, date} = e.detail;
+    const { title, date } = e.detail;
 
     $days = [...$days, new DateItem(title, date)];
 
@@ -39,7 +39,7 @@
           </Col>
         </Row>
         {#if showAddForm}
-          <AddDate on:addDate={addDate} on:hideForm={() => showForm(false)}/>
+          <AddDate on:addDate={addDate} on:hideForm={() => showForm(false)} />
         {/if}
       </Col>
     </Row>

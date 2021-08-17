@@ -1,7 +1,6 @@
-import {v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid';
 
 export default class DateItem {
-
   /**
    * Creates a new instance of DateItem
    * @param {string} title

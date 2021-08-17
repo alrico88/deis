@@ -1,19 +1,33 @@
-import dayjs from "dayjs";
-import {compressDateRange} from "date-range-compressor";
+import dayjs from 'dayjs';
+import { compressDateRange } from 'date-range-compressor';
 import memoize from 'lodash/memoize';
 
 export const dateFormat = 'YYYY-MM-DD';
 
+/**
+ * Gets the time difference between a date and now
+ *
+ * @export
+ * @param {string} datetime
+ * @return {string}
+ */
 export function getTimeDifference(datetime) {
   const now = dayjs();
   const nowFormatted = now.format(dateFormat);
-  const parsedDate = dayjs(datetime, dateFormat);
-  const isPast = parsedDate < now;
-  let noYears, noMonths, noDays;
+  const parsedDate = dayjs(datetime, dateFormat).format(dateFormat);
+
+  if (parsedDate === nowFormatted) {
+    return 'Today';
+  }
+
+  const isPast = parsedDate < nowFormatted;
+  let noYears; let noMonths; let
+    noDays;
 
   const args = isPast ? [parsedDate, nowFormatted] : [nowFormatted, parsedDate];
 
-  let dateRange = compressDateRange(...args);
+  // @ts-ignore
+  const dateRange = compressDateRange(...args);
 
   noYears = dateRange.years.length;
   noMonths = dateRange.months.length;
@@ -21,18 +35,18 @@ export function getTimeDifference(datetime) {
 
   while (noMonths > 12) {
     noYears += 1;
-    noMonths = noMonths - 12;
+    noMonths -= 12;
   }
 
   while (noDays > 30) {
     noMonths += 1;
-    noDays = noDays - 30;
+    noDays -= 30;
   }
 
   let str = '';
 
   if (noYears > 0) {
-    str += `${noYears} years `
+    str += `${noYears} years `;
   }
 
   if (noMonths > 0) {
@@ -46,4 +60,4 @@ export function getTimeDifference(datetime) {
   return `${str} ${isPast ? 'ago' : 'to go'}`;
 }
 
-export const getTimeDifferenceMemoized = memoize(getTimeDifference)
+export const getTimeDifferenceMemoized = memoize(getTimeDifference);
