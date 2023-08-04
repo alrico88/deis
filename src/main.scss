@@ -1,6 +1,17 @@
-$body-bg: #fdf8f6;
 $primary: #bf4722;
 $secondary: #682712;
 $font-family-sans-serif: 'ABeeZee';
 
 @import "node_modules/bootstrap/scss/bootstrap";
+
+html, body {
+  background-color: #fdf8f6;
+}
+
+.btn-link {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

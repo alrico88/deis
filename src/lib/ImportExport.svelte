@@ -13,19 +13,18 @@
 
 <ul class="list-inline mb-0">
   <li class="list-inline-item">
-    <button class="btn btn-link p-0 text-decoration-none" on:click={openImport}
+    <button class="btn btn-link p-0" on:click={openImport}
       ><BiUpload /> Import</button
     >
   </li>
   <li class="list-inline-item">
-    <button class="btn btn-link p-0 text-decoration-none" on:click={exportDays}
+    <button class="btn btn-link p-0" on:click={exportDays}
       ><BiDownload /> Export</button
     >
   </li>
   <li class="list-inline-item">
-    <button
-      class="btn btn-link text-danger p-0 text-decoration-none"
-      on:click={deleteDays}><BiRecycle /> Reset</button
+    <button class="btn btn-link text-danger p-0" on:click={deleteDays}
+      ><BiRecycle /> Reset</button
     >
   </li>
 </ul>
