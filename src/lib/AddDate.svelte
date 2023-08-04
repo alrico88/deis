@@ -1,26 +1,12 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
-  import {
-    Icon,
-    Card,
-    CardTitle,
-    CardBody,
-    CardFooter,
-    Form,
-    FormGroup,
-    Input,
-    Button,
-    Label,
-    Row,
-    Col,
-  } from 'sveltestrap';
+  import { createEventDispatcher } from "svelte";
 
-  let title = '';
-  let date = '';
+  let title = "";
+  let date = "";
 
   function reset() {
-    title = '';
-    date = '';
+    title = "";
+    date = "";
   }
 
   const dispatcher = createEventDispatcher();
@@ -28,11 +14,11 @@
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (title === '' || date === '') {
+    if (title === "" || date === "") {
       return;
     }
 
-    dispatcher('addDate', {
+    dispatcher("addDate", {
       title,
       date,
     });
@@ -41,59 +27,59 @@
   }
 
   function sendCancel() {
-    dispatcher('hideForm');
+    dispatcher("hideForm");
   }
 
-  $: addEnabled = title !== '' && date !== '';
+  $: addEnabled = title !== "" && date !== "";
 </script>
 
-<Row>
-  <Col>
-    <Card>
-      <CardBody>
-        <CardTitle>New date</CardTitle>
-        <Form on:submit={handleSubmit}>
-          <Row>
-            <Col lg={8}>
-              <FormGroup>
-                <Label>Title:</Label>
-                <Input
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">New date</div>
+      <div class="card-body">
+        <form class="form" on:submit={handleSubmit}>
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="form-group">
+                <label for="dateName" class="form-label">Title:</label>
+                <input
+                  id="dateName"
+                  class="form-control"
                   type="text"
                   bind:value={title}
                   placeholder="Eg.: My birthday"
                 />
-              </FormGroup>
-            </Col>
-            <Col lg={4}>
-              <FormGroup>
-                <Label>Date:</Label>
-                <Input type="date" bind:value={date} />
-              </FormGroup>
-            </Col>
-          </Row>
-        </Form>
-      </CardBody>
-      <CardFooter>
-        <Row>
-          <Col>
-            <Button
-              color="primary"
-              type="button"
-              class="w-100"
-              disabled={!addEnabled}
-              on:click={handleSubmit}
-            >
-              <Icon name="plus" />
-              Add date
-            </Button>
-          </Col>
-        </Row>
-        <Row class="pt-2">
-          <Col class="text-center">
-            <Button color="link" on:click={sendCancel}>Cancel</Button>
-          </Col>
-        </Row>
-      </CardFooter>
-    </Card>
-  </Col>
-</Row>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label for="dateDate" class="form-label">Date:</label>
+                <input
+                  id="dateDate"
+                  class="form-control"
+                  type="date"
+                  bind:value={date}
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <div class="hstack gap-2">
+          <button
+            class="btn btn-primary w-100"
+            disabled={!addEnabled}
+            on:click={handleSubmit}
+          >
+            Add date
+          </button>
+          <button class="btn btn-link w-100" on:click={sendCancel}
+            >Cancel</button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

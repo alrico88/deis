@@ -1,25 +1,31 @@
 <script>
-  import { Card, Icon } from 'sveltestrap';
-  import { createEventDispatcher } from 'svelte';
+  import BiPlusCircle from "~icons/bi/plus-circle";
+  import { createEventDispatcher } from "svelte";
 
   const dispatcher = createEventDispatcher();
 
-  function sendAddSignal() {
-    dispatcher('add');
+  function sendAddSignal(e) {
+    e.preventDefault();
+
+    dispatcher("add");
   }
 </script>
 
-<Card body class="px-3 py-2 hoverable" on:click={sendAddSignal}>
-  <Icon name="plus-circle" class="display-3 mx-auto" />
-</Card>
+<div class="card px-3 py-2 hoverable">
+  <div class="card-body text-center">
+    <a href="#" class="stretched-link display-5" on:click={sendAddSignal}>
+      <BiPlusCircle />
+    </a>
+  </div>
+</div>
 
 <style>
-  :global(.hoverable) {
+  .hoverable {
     opacity: 0.2;
     transition: 0.5s ease-in-out opacity;
   }
 
-  :global(.hoverable:hover) {
+  .hoverable:hover {
     cursor: pointer;
     opacity: 1;
   }

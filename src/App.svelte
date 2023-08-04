@@ -1,13 +1,13 @@
 <script>
-  import CardFilter from './lib/CardFilter.svelte';
-  import AddDate from './lib/AddDate.svelte';
-  import { days } from './stores/main';
-  import DateItem from './helpers/DateItem';
-  import { Row, Col } from 'sveltestrap';
-  import PlaceholderAdd from './lib/PlaceholderAdd.svelte';
-  import DateList from './lib/DateList.svelte';
-  import Logo from './lib/Logo.svelte';
-  import Credits from './lib/Credits.svelte';
+  import CardFilter from "./lib/CardFilter.svelte";
+  import AddDate from "./lib/AddDate.svelte";
+  import { days } from "./stores/main";
+  import DateItem from "./helpers/DateItem";
+  import PlaceholderAdd from "./lib/PlaceholderAdd.svelte";
+  import DateList from "./lib/DateList.svelte";
+  import Logo from "./lib/Logo.svelte";
+  import Credits from "./lib/Credits.svelte";
+  import ImportExport from "./lib/ImportExport.svelte";
 
   let showAddForm = false;
 
@@ -26,25 +26,34 @@
 
 <main class="flex-shrink-0">
   <div class="container pb-3">
-    <Row class="justify-content-center">
-      <Col md={8}>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
         <Logo />
         <CardFilter />
-        <Row>
-          <Col>
+        <div class="row">
+          <div class="col">
             <DateList />
             {#if !showAddForm}
               <PlaceholderAdd on:add={() => showForm(true)} />
             {/if}
-          </Col>
-        </Row>
+          </div>
+        </div>
         {#if showAddForm}
           <AddDate on:addDate={addDate} on:hideForm={() => showForm(false)} />
         {/if}
-      </Col>
-    </Row>
+      </div>
+    </div>
   </div>
 </main>
-<footer class="mt-auto text-center bg-white py-3">
-  <Credits />
+<footer class="mt-auto bg-white">
+  <div class="container py-3">
+    <div class="row align-items-center g-2">
+      <div class="col-md-4">
+        <ImportExport />
+      </div>
+      <div class="col-md-8 text-md-end">
+        <Credits />
+      </div>
+    </div>
+  </div>
 </footer>

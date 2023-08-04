@@ -1,35 +1,34 @@
 <script>
-  import { ButtonGroup, Button, Row, Col } from 'sveltestrap';
-  import { filter } from '../stores/main';
+  import { filter } from "../stores/main";
 
   const options = [
     {
-      text: 'All',
-      value: 'all',
+      text: "All",
+      value: "all",
     },
     {
-      text: 'Past',
-      value: 'past',
+      text: "Past",
+      value: "past",
     },
     {
-      text: 'Upcoming',
-      value: 'upcoming',
+      text: "Upcoming",
+      value: "upcoming",
     },
   ];
 </script>
 
-<Row class="py-3">
-  <Col>
-    <ButtonGroup size="sm" class="d-flex">
+<div class="row py-3">
+  <div class="col">
+    <div class="btn-group btn-group-sm d-flex">
       {#each options as option}
-        <Button
-          active={$filter === option.value}
+        <button
           on:click={() => ($filter = option.value)}
-          class="w-100"
+          class="btn btn-secondary w-100"
+          class:active={$filter === option.value}
         >
           {option.text}
-        </Button>
+        </button>
       {/each}
-    </ButtonGroup>
-  </Col>
-</Row>
+    </div>
+  </div>
+</div>
