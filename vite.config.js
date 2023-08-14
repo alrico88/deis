@@ -34,6 +34,7 @@ export default defineConfig({
             purpose: "any maskable",
           },
         ],
+        orientation: "any",
       },
       client: {
         installPrompt: true,
@@ -42,6 +43,9 @@ export default defineConfig({
         navigateFallback: "/",
         globPatterns: ["**/*.{js,css,html,png,svg,ico,woff,woff2}"],
         cleanupOutdatedCaches: true,
+      },
+      devOptions: {
+        enabled: true,
       },
     }),
   ],
