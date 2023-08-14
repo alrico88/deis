@@ -1,16 +1,17 @@
 <script>
   import dayjs from "dayjs";
   import { createEventDispatcher } from "svelte";
-  import { dateFormat } from "../helpers/dates";
+  import { dateFormat, getTimeDifference } from "../helpers/dates";
+  import Counter from "./Counter.svelte";
 
   const dispatcher = createEventDispatcher();
 
   export let title;
   export let date;
   export let id;
-  export let count;
 
   $: isPast = dayjs(date, dateFormat) < dayjs();
+  $: count = getTimeDifference(date);
 
   /**
    * Gets the computed value for the badge
@@ -36,18 +37,23 @@
   }
 </script>
 
-<div class="card mb-2">
+<div class="card">
   <div class="card-body">
     <div class="row align-items-center">
-      <div class="col-md-7">
+      <div class="col-6">
         <h6>
           <span class="badge mb-2 bg-{timeProps.color}">{timeProps.text}</span>
         </h6>
         <h5 class="fw-bold">{title}</h5>
         <p class="mb-0 text-muted">{timeFormatted}</p>
       </div>
-      <div class="col text-md-end mt-3 mt-md-0">
-        <p class="lead font-monospace mb-0">{count}</p>
+      <div class="col-6 text-md-end mt-3 mt-md-0">
+        <div class="hstack gap-2">
+          <Counter text="Years" bind:value={count.years} />
+          <Counter text="Months" bind:value={count.months} />
+          <Counter text="Days" bind:value={count.days} />
+          <div class="text-nowrap">{count.append}</div>
+        </div>
       </div>
     </div>
   </div>

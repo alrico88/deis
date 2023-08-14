@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import { compressDateRange } from "date-range-compressor";
-import memoize from "lodash/memoize";
 
 export const dateFormat = "YYYY-MM-DD";
 
@@ -9,7 +8,7 @@ export const dateFormat = "YYYY-MM-DD";
  *
  * @export
  * @param {string} datetime
- * @return {string}
+ * @return {{years: number, months: number, days: number, append: string}}
  */
 export function getTimeDifference(datetime) {
   const now = dayjs();
@@ -46,19 +45,10 @@ export function getTimeDifference(datetime) {
 
   let str = "";
 
-  if (noYears > 0) {
-    str += `${noYears} years `;
-  }
-
-  if (noMonths > 0) {
-    str += `${noMonths} months `;
-  }
-
-  if (noDays > 0) {
-    str += `${noDays} days`;
-  }
-
-  return `${str} ${isPast ? "ago" : "to go"}`;
+  return {
+    append: isPast ? "ago" : "to go",
+    days: noDays,
+    months: noMonths,
+    years: noYears,
+  };
 }
-
-export const getTimeDifferenceMemoized = memoize(getTimeDifference);

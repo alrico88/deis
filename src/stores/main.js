@@ -1,5 +1,4 @@
-import { derived, writable, get } from "svelte/store";
-import { getTimeDifferenceMemoized } from "../helpers/dates";
+import { writable, get } from "svelte/store";
 import { saveAs } from "file-saver";
 import { readAsText } from "promise-file-reader";
 
@@ -32,13 +31,6 @@ function persistedWritable(name, initValue) {
 export const filter = writable("all");
 
 export const days = persistedWritable("days", []);
-
-export const processedDays = derived(days, ($days) =>
-  $days.map((item) => ({
-    ...item,
-    count: getTimeDifferenceMemoized(item.date),
-  })),
-);
 
 export function exportDays() {
   var blob = new Blob([JSON.stringify(get(days))], {

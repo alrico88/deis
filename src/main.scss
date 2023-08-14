@@ -1,11 +1,16 @@
 $primary: #bf4722;
 $secondary: #682712;
 $font-family-sans-serif: 'ABeeZee';
+$bg: #fdf8f6;
+$card-border-color: $bg;
+$card-bg: $bg;
+$card-border-radius: 20px;
+$card-cap-bg: darken($bg, 1.5);
 
 @import "node_modules/bootstrap/scss/bootstrap";
 
 html, body {
-  background-color: #fdf8f6;
+  background-color: white;
 }
 
 .btn-link {
@@ -13,5 +18,19 @@ html, body {
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+.bg-colored {
+  background-color: $bg;
+}
+
+.bg-footer {
+  background-color: darken($bg, 5);
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
   }
 }

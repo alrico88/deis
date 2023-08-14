@@ -17,7 +17,7 @@
   ];
 </script>
 
-<div class="row py-3">
+<div class="row pb-3">
   <div class="col">
     <div class="btn-group btn-group-sm d-flex">
       {#each options as option}
