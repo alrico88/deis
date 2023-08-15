@@ -12,6 +12,7 @@
 
   $: isPast = dayjs(date, dateFormat) < dayjs();
   $: count = getTimeDifference(date);
+  $: isToday = date === dayjs().format(dateFormat);
 
   /**
    * Gets the computed value for the badge
@@ -48,12 +49,17 @@
         <p class="mb-0 text-muted">{timeFormatted}</p>
       </div>
       <div class="col-6 text-md-end mt-3 mt-md-0">
-        <div class="hstack gap-2">
-          <Counter text="Years" bind:value={count.years} />
-          <Counter text="Months" bind:value={count.months} />
-          <Counter text="Days" bind:value={count.days} />
-          <div class="text-nowrap">{count.append}</div>
-        </div>
+        {#if isToday}
+          <div class="fw-bold lead">Today</div>
+        {/if}
+        {#if !isToday}
+          <div class="hstack gap-2">
+            <Counter text="Years" bind:value={count.years} />
+            <Counter text="Months" bind:value={count.months} />
+            <Counter text="Days" bind:value={count.days} />
+            <div class="text-nowrap">{count.append}</div>
+          </div>
+        {/if}
       </div>
     </div>
   </div>
